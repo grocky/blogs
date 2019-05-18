@@ -3517,7 +3517,7 @@ migrations}</string>
 		<key>Sidebar_Tab</key>
 		<integer>0</integer>
 		<key>VisibleRegion</key>
-		<string>{{-144, 308}, {1139, 767}}</string>
+		<string>{{-155.5, 202}, {1139, 767}}</string>
 		<key>WindowInfo_InspectorTab</key>
 		<array>
 			<string>com.omnigroup.OmniGraffle.inspectorGroup.object</string>
