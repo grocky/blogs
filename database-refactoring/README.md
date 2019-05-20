@@ -49,13 +49,13 @@ This prevents errors from schema misalignment while transitioning between applic
 For destructive schema migrations (e.g., a change that would require renaming or removing a column), the refactoring procedure is as follows:
 
 1. Phase 1: **Deprecate Columns**
-    * Write a migration to add columns (if necessary).
-        * When moving a column, you will also need to move data over to the new column and set up triggers to synchronize data between the columns.
-    * If moving a column, then update the application to use the new column location. If removing a column, then update the application to stop using a column to be removed.
+    * If you are moving a column, write a migration to add columns and then update the application to use the new column location.
+        * When moving a column, you will need to move data over to the new column and set up triggers to synchronize data between the columns. 
+    * If you are removing a column, then update the application to stop using the column to be removed.
     * Deploy.
-1. Phase 2: **Transition**
-1. Phase 3: **Cleanup**
+1. Phase 2: **Transition Period**
+1. Phase 3: **Clean Up**
     * Write a migration that removes the previously used column.
     * Deploy.
 
-Thanks for reading!
+There are many more patterns and techniques for refactoring database schemas that provid a safe, methodic process to altering production schemas and I encourage you to explore them.

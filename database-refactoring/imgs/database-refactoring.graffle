@@ -53,7 +53,7 @@
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2019-05-20 03:53:17 +0000</string>
+	<string>2019-05-20 03:59:14 +0000</string>
 	<key>Modifier</key>
 	<string>Rocky Gray</string>
 	<key>MovementHandleVisible</key>
@@ -116,7 +116,7 @@
 			<key>BackgroundGraphic</key>
 			<dict>
 				<key>Bounds</key>
-				<string>{{-1119, -717}, {3923, 2373}}</string>
+				<string>{{-953.5042735042739, -605.55555555555566}, {3591.4529914529921, 2149.5726495726494}}</string>
 				<key>Class</key>
 				<string>GraffleShapes.CanvasBackgroundGraphic</string>
 				<key>ID</key>
@@ -3103,7 +3103,7 @@ migrations}</string>
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{921.62242341902129, 66.5}, {329.87757658097871, 379}}</string>
+					<string>{{921.62242341902129, 66.5}, {334.87757658097871, 379}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>ID</key>
@@ -3188,7 +3188,7 @@ migrations}</string>
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{1251.5, 67}, {271, 379}}</string>
+					<string>{{1254.350011318922, 65.83915781724599}, {266.85001134872437, 381.32168436550802}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>ID</key>
@@ -3275,7 +3275,7 @@ migrations}</string>
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{1522.5, 67}, {129.71199999999953, 379}}</string>
+					<string>{{1521.5, 67.000000000000028}, {131.02449717064155, 379.9060868755227}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>ID</key>
@@ -3729,7 +3729,7 @@ migrations}</string>
 		<key>Sidebar_Tab</key>
 		<integer>0</integer>
 		<key>VisibleRegion</key>
-		<string>{{596.5, -180.5}, {1139, 767}}</string>
+		<string>{{758.03418803418765, -26.495726495726569}, {973.50427350427378, 655.55555555555554}}</string>
 		<key>WindowInfo_InspectorTab</key>
 		<array>
 			<string>com.omnigroup.OmniGraffle.inspectorGroup.object</string>
@@ -3738,7 +3738,7 @@ migrations}</string>
 		<array>
 			<array>
 				<string>Canvas 1</string>
-				<real>1</real>
+				<real>1.1699999999999999</real>
 				<real>1</real>
 			</array>
 		</array>
