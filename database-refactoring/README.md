@@ -22,7 +22,7 @@ Running migrations is an explicit step within the deployment process and not tie
 *Fig. 1: Deployment Process*
 
 This process works really well for deploying database changes.
-However, if you change the database schema in a way that is not backwords compatible (e.g. rename, remove, or move a column), you may risk some downtime or have some requests fail while the new version of your application is deployed.
+However, if you change the database schema in a way that is not backwards compatible (e.g. rename, remove, or move a column), you may risk some downtime or have some requests fail while the new version of your application is deployed.
 For example, in *Fig. 2* below, deploying a change that moves a column from one table to another results in request failures from the time the migration is applied to when the previous version of the application is removed.
 
 <p align="center">
@@ -39,6 +39,9 @@ I quickly found [Refactoring Databases](https://martinfowler.com/books/refactori
 Revisiting the example of moving a column from one table to another, the key is to keep the schema backwards compatible to allow for a smooth transition between different versions of the application and allow for application rollbacks.
 You can do this in a couple of phases where the new column location and updated application logic is grouped into one deployment and the removal of the old column with a following deployment.
 This prevents errors from schema misalignment while transitioning between application versions.
+This also introduces a _Transition Period_ where you ensure the new application and schema is working as expected before cleaning up.
+For scenarios where the database is a backend for multiple applications, this period allows enough time for applications to migrate over to the new schema.
+The _Clean Up_ phase could be weeks or months in the future, but with the appropriate triggers the data will remain in-sync.
 
 <p align="center">
     <img src="./imgs/diagrams/timeline-deployment-2.png" alt="timeline of clean application deployment" style="height: 350px;"/>
@@ -58,4 +61,8 @@ For destructive schema migrations (e.g., a change that would require renaming or
     * Write a migration that removes the previously used column.
     * Deploy.
 
-There are many more patterns and techniques for refactoring database schemas that provid a safe, methodic process to altering production schemas and I encourage you to explore them.
+There are many more patterns and techniques for refactoring database schemas that provide a safe, methodical process to alter production schemas and I encourage you to explore them.
+Here is a quick list of references I have found useful that should set you on the right path:
+
+- https://martinfowler.com/books/refactoringDatabases.html
+- https://databaserefactoring.com/
