@@ -1,0 +1,41 @@
+[[socials]]
+    id = "www"
+    url = "https://www.rockygray.com"
+    icon = "logo"
+    title = "Site"
+    weight = 1
+
+[[socials]]
+    id = "rss"
+    url = "/rss.xml"
+    icon = "rss"
+    title = "RSS"
+    weight = 3
+
+[[socials]]
+    id = "email"
+    url = "mailto:rocky.grayjr@gmail.com"
+    icon = "envelope"
+    title = "Email"
+    weight = 2
+
+[[socials]]
+    id = "github"
+    url = "https://github.com/grocky"
+    icon = "github"
+    title = "GitHub"
+    weight = 3
+
+[[socials]]
+    id = "twitter"
+    url = "https://twitter.com/RockyGJr"
+    icon = "twitter"
+    title = "Twitter"
+    weight = 4
+
+[[socials]]
+    id = "stack-overflow"
+    url = "https://stackoverflow.com/story/rockygray"
+    icon = "stackoverflow"
+    title = "StackOverflow"
+    weight = 5
