@@ -18,3 +18,6 @@ help: phony ## print this help message
 
 init: ## Just setting things up...
 	@echo $(SOURCES)
+
+serve: phony ## serve content with watcher
+	hugo server -D
