@@ -1,3 +1,9 @@
+---
+title: "Refactoring is good for your code and databases too!"
+date: 2019-05-20T08:00:00-04:00
+draft: true
+---
+
 # Refactoring is good for your code and databases too!
 
 Ever since reading [Refactoring](https://martinfowler.com/books/refactoring.html) by Martin Fowler, I have gained a healthy amount of respect for the process and mechanics of refactoring code (i.e., a technique for restructuring an existing body of code without changing its behavior).
@@ -6,17 +12,17 @@ Instead of plowing through and refactoring all the things at once and then playi
 It certainly has deepened my appreciation for the craftsmanship of writing code and reduced the chances that I get myself into a "_Why is everything broken???_" situation.
 
 <p align="center">
-    <img src="./imgs/frustrated.jpg" alt="Frustrated" align="center" style="height: 350px;"/>
+    <img src="/database-refactoring/frustrated.jpg" alt="Frustrated" align="center" style="height: 350px;"/>
 </p>
 
-*[Storyblocks](https://www.storyblocks.com/)*
+> From *[Storyblocks](https://www.storyblocks.com/)*
 
 Recently, I conducted a database change that moved some columns around to different tables and introduced a new schema - something I have done dozens of times, though maybe a little brazenly.
 Typically, in my projects, I run migrations then deploy the application.
 Running migrations is an explicit step within the deployment process and not tied to application startup to remove the chance of race conditions when there are multiple application instances.
 
 <p align="center">
-    <img src="./imgs/diagrams/migrations-deployment.png" alt="migrations deployment" style="height: 350px;"/>
+    <img src="/database-refactoring/diagrams/migrations-deployment.png" alt="migrations deployment" style="height: 350px;"/>
 </p>
 
 *Fig. 1: Deployment Process*
@@ -26,7 +32,7 @@ However, if you change the database schema in a way that is not backwards compat
 For example, in *Fig. 2* below, deploying a change that moves a column from one table to another results in request failures from the time the migration is applied to when the previous version of the application is removed.
 
 <p align="center">
-    <img src="./imgs/diagrams/timeline-deployment-1.png" alt="timeline of application deployment" style="height: 350px;"/>
+    <img src="/database-refactoring/diagrams/timeline-deployment-1.png" alt="timeline of application deployment" style="height: 350px;"/>
 </p>
 
 *Fig. 2: Original Deployment Timeline*
@@ -44,7 +50,7 @@ For scenarios where the database is a back-end for multiple applications, this p
 The _Clean Up_ phase could be weeks or months in the future, but with the appropriate triggers the data will remain in-sync.
 
 <p align="center">
-    <img src="./imgs/diagrams/timeline-deployment-2.png" alt="timeline of clean application deployment" style="height: 350px;"/>
+    <img src="/database-refactoring/diagrams/timeline-deployment-2.png" alt="timeline of clean application deployment" style="height: 350px;"/>
 </p>
 
 *Fig. 3: Refactored Deployment Timeline*
@@ -66,3 +72,5 @@ Here is a quick list of references I have found useful that should set you on th
 
 - https://martinfowler.com/books/refactoringDatabases.html
 - https://databaserefactoring.com/
+
+> This was originally posted on [Medium](https://medium.com/@rocky.grayjr/refactoring-is-good-for-your-code-and-databases-too-aa4579900235)
