@@ -3,7 +3,7 @@
 Ever since reading [Refactoring](https://martinfowler.com/books/refactoring.html) by Martin Fowler, I have gained a healthy amount of respect for the process and mechanics of refactoring code (i.e., a technique for restructuring an existing body of code without changing its behavior).
 It identifies some common "code smells" and provides a step-by-step guide to refactoring the code into a better design.
 Instead of plowing through and refactoring all the things at once and then playing whack-a-mole to get the tests green again, following the principles described in the book allows you to be methodical and precise in the way you reshape your code.
-It certainly has deepened my appreciation for the crafstmanship of writing code and reduced the chances that I get myself into a "_Why is everything broken???_" situation.
+It certainly has deepened my appreciation for the craftsmanship of writing code and reduced the chances that I get myself into a "_Why is everything broken???_" situation.
 
 <p align="center">
     <img src="./imgs/frustrated.jpg" alt="Frustrated" align="center" style="height: 350px;"/>
@@ -40,7 +40,7 @@ Revisiting the example of moving a column from one table to another, the key is 
 You can do this in a couple of phases where the new column location and updated application logic is grouped into one deployment and the removal of the old column with a following deployment.
 This prevents errors from schema misalignment while transitioning between application versions.
 This also introduces a _Transition Period_ where you ensure the new application and schema is working as expected before cleaning up.
-For scenarios where the database is a backend for multiple applications, this period allows enough time for applications to migrate over to the new schema.
+For scenarios where the database is a back-end for multiple applications, this period allows enough time for applications to migrate over to the new schema.
 The _Clean Up_ phase could be weeks or months in the future, but with the appropriate triggers the data will remain in-sync.
 
 <p align="center">
