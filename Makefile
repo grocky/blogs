@@ -21,3 +21,6 @@ init: ## Just setting things up...
 
 serve: phony ## serve content with watcher
 	hugo server -D
+
+update-theme: phony ## update themes
+	git submodule update --rebase --remote
