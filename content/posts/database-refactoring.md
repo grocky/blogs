@@ -1,7 +1,6 @@
 ---
 title: "Refactoring is good for your code and databases too!"
 date: 2019-05-20T08:00:00-04:00
-draft: true
 ---
 
 # Refactoring is good for your code and databases too!
