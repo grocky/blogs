@@ -24,3 +24,14 @@ serve: phony ## serve content with watcher
 
 update-theme: phony ## update themes
 	git submodule update --rebase --remote
+
+### Infrastructure ###
+
+tf-plan: phony ## terraform plan
+	cd infrastructure; terraform plan
+
+tf-init: phony ## initialize terraform when adding new integrations
+	cd infrastructure; terraform init
+
+tf-apply: phony ## apply infrastructure
+	cd infrastructure; terraform apply -auto-approve
