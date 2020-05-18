@@ -5,6 +5,9 @@ MARKDOWN = pandoc --from gfm --to html --standalone
 
 SOURCES := $(shell find . -not \( -path ./.git -prune \) -name README.md)
 
+SITE_BUCKET := blog.rockygray.com
+BUILD_DIR := build
+
 .PHONY: phony
 .DEFAULT_GOAL := help
 ##### Targets ######
@@ -24,6 +27,12 @@ serve: phony ## serve content with watcher
 
 update-theme: phony ## update themes
 	git submodule update --rebase --remote
+
+build: ## build the site
+	hugo -d ${BUILD_DIR}
+
+deploy: build ## deploy the site
+	aws s3 sync ${BUILD_DIR} s3://${SITE_BUCKET}/
 
 ### Infrastructure ###
 
