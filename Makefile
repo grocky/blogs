@@ -3,7 +3,7 @@ NC     := $(shell tput -Txterm sgr0)
 
 MARKDOWN = pandoc --from gfm --to html --standalone
 
-SOURCES := $(shell find . -not \( -path ./.git -prune \) -name *.md)
+SOURCES := $(shell find . -not \( -path ./.git -prune \) -name "*.md")
 
 SITE_BUCKET := blog.rockygray.com
 BUILD_DIR := build

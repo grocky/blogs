@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: cibuilds/hugo:0.54
+      - image: cibuilds/hugo:0.70
     working_directory: ~/blog.rockygray.com
     steps:
       - checkout
@@ -15,6 +15,10 @@ jobs:
           name: Validate the site
           command: htmlproofer ./build --allow-hash-href --check-html --empty-alt-ignore --disable-external
       - save_cache:
+          key: v1-makefile-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - ~/blog.rockygray.com/Makefile
+      - save_cache:
           key: v1-build-{{ .Environment.CIRCLE_SHA1 }}
           paths:
             - ~/blog.rockygray.com/build
@@ -23,6 +27,8 @@ jobs:
       enabled: true
     working_directory: ~/blog.rockygray.com
     steps:
+      - restore_cache:
+          key: v1-makefile-{{ .Environment.CIRCLE_SHA1 }}
       - restore_cache:
           key: v1-build-{{ .Environment.CIRCLE_SHA1 }}
       - run:
@@ -36,6 +42,6 @@ workflows:
       - deploy:
           requires:
             - build
-        #  filters:
-        #    branches:
-        #      only: master
+          filters:
+            branches:
+              only: master
