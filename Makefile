@@ -3,7 +3,7 @@ NC     := $(shell tput -Txterm sgr0)
 
 MARKDOWN = pandoc --from gfm --to html --standalone
 
-SOURCES := $(shell find . -not \( -path ./.git -prune \) -name README.md)
+SOURCES := $(shell find . -not \( -path ./.git -prune \) -name *.md)
 
 SITE_BUCKET := blog.rockygray.com
 BUILD_DIR := build
@@ -17,10 +17,13 @@ help: phony ## print this help message
         sort
 
 %.html: %.md
-	    $(MARKDOWN) $< --output $@
+	$(MARKDOWN) $< --output $@
 
 init: ## Just setting things up...
 	@echo $(SOURCES)
+
+clean: phony ## cleanup
+	-rm -r ${BUILD_DIR} 2>/dev/null || true
 
 serve: phony ## serve content with watcher
 	hugo server -D
@@ -28,11 +31,12 @@ serve: phony ## serve content with watcher
 update-theme: phony ## update themes
 	git submodule update --rebase --remote
 
-build: ## build the site
-	hugo -d ${BUILD_DIR}
+build: $(SOURCES) ## build the site
+	hugo -v -d ${BUILD_DIR} --minify
 
 deploy: build ## deploy the site
-	aws s3 sync ${BUILD_DIR} s3://${SITE_BUCKET}/
+	aws s3 sync --cache-control 'max-age=604800' --exclude index.html build/ s3://$(SITE_BUCKET)
+	aws s3 sync --cache-control 'no-cache' build/ s3://$(SITE_BUCKET)
 
 ### Infrastructure ###
 
