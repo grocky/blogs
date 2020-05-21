@@ -336,14 +336,11 @@ uglyURLs = false
     siteLogo = "/icons/favicon.ico"
     # Note: used for JSON-LD, Open Graph
 
-    siteDescription = "MemE is a powerful and highly customizable GoHugo theme for personal blogs."
-    # Note: used for HTML head meta, JSON-LD,
-    #       Open Graph, Atom, RSS
+    siteDescription = "Just trying to write more things down. Hopefully it'll be helpful to others and future me too."
 
-    siteCreatedTime = "2020-05-17T15:00:00+00:00"
+    siteCreatedTime = "2019-05-10T15:00:00+00:00"
 
     siteTwitter = "RockyGJr"
-    # Note: used for Twitter Cards
 
     ######################################
     # Category By
