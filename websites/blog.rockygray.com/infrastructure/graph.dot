@@ -1,0 +1,37 @@
+digraph {
+	compound = "true"
+	newrank = "true"
+	subgraph "root" {
+		"[root] aws_cloudfront_distribution.blog_distribution" [label = "aws_cloudfront_distribution.blog_distribution", shape = "box"]
+		"[root] aws_route53_record.blog" [label = "aws_route53_record.blog", shape = "box"]
+		"[root] aws_s3_bucket.blog" [label = "aws_s3_bucket.blog", shape = "box"]
+		"[root] data.terraform_remote_state.rockygray_com" [label = "data.terraform_remote_state.rockygray_com", shape = "box"]
+		"[root] output.cloudfront_url" [label = "output.cloudfront_url", shape = "note"]
+		"[root] output.cloudfront_www_id" [label = "output.cloudfront_www_id", shape = "note"]
+		"[root] output.s3_website_url" [label = "output.s3_website_url", shape = "note"]
+		"[root] output.site_url" [label = "output.site_url", shape = "note"]
+		"[root] provider.aws" [label = "provider.aws", shape = "diamond"]
+		"[root] provider.terraform" [label = "provider.terraform", shape = "diamond"]
+		"[root] var.blog_domain_name" [label = "var.blog_domain_name", shape = "note"]
+		"[root] aws_cloudfront_distribution.blog_distribution" -> "[root] aws_s3_bucket.blog"
+		"[root] aws_cloudfront_distribution.blog_distribution" -> "[root] data.terraform_remote_state.rockygray_com"
+		"[root] aws_route53_record.blog" -> "[root] aws_cloudfront_distribution.blog_distribution"
+		"[root] aws_s3_bucket.blog" -> "[root] provider.aws"
+		"[root] aws_s3_bucket.blog" -> "[root] var.blog_domain_name"
+		"[root] data.terraform_remote_state.rockygray_com" -> "[root] provider.terraform"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] output.cloudfront_url"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] output.cloudfront_www_id"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] output.s3_website_url"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] output.site_url"
+		"[root] output.cloudfront_url" -> "[root] aws_cloudfront_distribution.blog_distribution"
+		"[root] output.cloudfront_www_id" -> "[root] aws_cloudfront_distribution.blog_distribution"
+		"[root] output.s3_website_url" -> "[root] aws_s3_bucket.blog"
+		"[root] output.site_url" -> "[root] aws_route53_record.blog"
+		"[root] provider.aws (close)" -> "[root] aws_route53_record.blog"
+		"[root] provider.terraform (close)" -> "[root] data.terraform_remote_state.rockygray_com"
+		"[root] root" -> "[root] meta.count-boundary (EachMode fixup)"
+		"[root] root" -> "[root] provider.aws (close)"
+		"[root] root" -> "[root] provider.terraform (close)"
+	}
+}
+
