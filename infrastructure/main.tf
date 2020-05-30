@@ -17,12 +17,16 @@ data "terraform_remote_state" "rockygray_com" {
   config = {
     bucket = "grocky-tfstate"
     region = "us-east-1"
-    key    = "www.rockygray.com/terraform.tfstate"
+    key    = "rockygray.com/terraform.tfstate"
   }
 }
 
 variable "blog_domain_name" {
   default = "blog.rockygray.com"
+}
+
+output "site_url" {
+  value = aws_route53_record.blog.fqdn
 }
 
 output "s3_website_url" {
