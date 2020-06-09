@@ -1,7 +1,7 @@
 ---
 title: "Mice Detection in Go Using OpenCV and MachineBox"
 date: 2020-06-08T00:40:13-04:00
-draft: true
+tags: ["go", "gocv", "machine learning", "graphics"]
 ---
 
 {{< figure src="mouse-detective.gif" >}}
