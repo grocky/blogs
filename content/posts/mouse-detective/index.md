@@ -254,11 +254,13 @@ func processResults(results <-chan result) {
 }
 ```
 
-Here's one of the frames!
+Here's a gif of the frames for one of the videos!
 
-{{< figure src="rendered-frame.jpg" >}}
+{{< figure src="rendered-frames.gif" caption="generated with `convert rendered-frames/*${filedate}* rendered-frames.gif`" >}}
 
 ## Wrapping up
 
-With the program set up to process a video, we can now run all 4-thousand-ish videos through it to find the first one
-with a mouse! You can find the code for this here: [grocky/mouse-detective](https://github.com/grocky/mouse-detective).
+With the program set up to process a video, I ran all 4-thousand-ish videos through it to find the first one
+with a mouse. Woot!
+
+You can find the code for this here: [grocky/mouse-detective](https://github.com/grocky/mouse-detective).
