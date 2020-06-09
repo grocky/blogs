@@ -499,12 +499,12 @@ uglyURLs = false
     ######################################
     # Dark Mode
 
-    enableDarkMode = true
+    enableDarkMode = false
 
-    defaultTheme = "dark"
+    defaultTheme = "light"
     # Note: light or dark
 
-    hideThemeToggle = false
+    hideThemeToggle = true
     hideThemeToggleInHome = false
     # Note: If dark mode is enabled and
     #       theme toggle is hidden, your
