@@ -76,3 +76,189 @@ does a decent job describing what you want to do. I found the frames with the mo
 and let it do its thing.
 
 {{< figure src="annotate-mouse.png" caption="Annotation in action" >}}
+
+## Processing the video
+
+Now for the fun part. At a high level, we have a frames channel and a results channel. The `extractor` reads in the video
+file and places each frame in the frames channel. In concurrent goroutines, the `checkers` send the frames to the
+objectbox container. If the model detects a mouse, then we save that frame to a file.
+
+{{< figure src="https://github.com/grocky/mouse-detective/raw/master/docs/activity.png" caption="representation of the structure of the program" >}}
+
+### Frame extraction
+
+We'll be using [GoCV](https://gocv.io/) to extract frames from the video. In a goroutine the video
+is streamed and each frame is encoded and placed in a channel for processing.
+
+```go
+func extractFrames(done <-chan struct{}, filename string) (<-chan frame, <-chan error) {
+    framec := make(chan frame)
+    errc := make(chan error, 1)
+
+    go func() {
+        defer close(framec)
+
+        video, err := gocv.VideoCaptureFile(filename)
+        if err != nil {
+            errc <- err
+            return
+        }
+        frameMat := gocv.NewMat()
+
+        errc <- func() error {
+            n := 1
+            for {
+                if !video.Read(&frameMat) {
+                    return &endOfFile{n}
+                }
+                buf, err := gocv.IMEncode(gocv.JPEGFileExt, frameMat)
+                if err != nil {
+                    return err
+                }
+                select {
+                case framec <- frame{n, buf}:
+                case <-done:
+                    return errors.New("Frame extraction canceled")
+                }
+                n++
+            }
+        }()
+    }()
+    return framec, errc
+}
+```
+
+### Frame checker
+
+In concurrent goroutines frames are pulled from the `frames` channel and sent to the Objectbox container. If the model
+detects a mouse in the frame, then we construct a `result` and place it in the channel.
+
+```go
+// channel of frames with mice
+results := make(chan result)
+var wg sync.WaitGroup
+wg.Add(concurrencyF)
+
+// Process the frames by fanning out to `concurrency` workers.
+log.Println("Start processing frames")
+for i := 0; i < concurrencyF; i++ {
+    go func() {
+        checker(done, frames, results)
+        wg.Done()
+    }()
+}
+
+// when each all workers are done, close the results channel
+go func() {
+    wg.Wait()
+    close(results)
+}()
+```
+
+```go
+type result struct {
+    // the frame number
+    frame int
+    // The detected bounds
+    detectors []objectbox.CheckDetectorResponse
+    file      io.Reader
+    err       error
+}
+
+func checker(done <-chan struct{}, frames <-chan frame, results chan<- result) {
+    objectClient := objectbox.New("http://localhost:8083")
+    info, err := objectClient.Info()
+    if err != nil {
+        log.Fatalf("could not get box info: %v", err)
+    }
+    log.Printf("Connected to box: %s %s %s %d", info.Build, info.Name, info.Status, info.Version)
+
+    // process each frame from in channel
+    for f := range frames {
+        if f.number == 1 || f.number%10 == 0 {
+            log.Printf("Processing frame %d\n", f.number)
+        }
+        // Set up a ReadWriter to hold the image sent to the model to write the file later.
+        var bufferRead bytes.Buffer
+        buffer := bytes.NewReader(f.buffer)
+
+		// Send data read by the objectbox request to the buffer.
+        tee := io.TeeReader(buffer, &bufferRead)
+        resp, err := objectClient.Check(tee)
+        detectors := make([]objectbox.CheckDetectorResponse, 0, len(resp.Detectors))
+
+        // flatten detectors and identify found tags
+        for _, t := range resp.Detectors {
+            if len(t.Objects) > 0 {
+                detectors = append(detectors, t)
+            }
+        }
+        if len(detectors) == 0 {
+            continue
+        }
+        select {
+        case results <- result{f.number, detectors, &bufferRead, err}:
+        case <-done:
+            return
+        }
+    }
+}
+```
+
+### Results processor
+
+Finally, we drain the `results` channel and encode the images with the mouse highlighted. The Objectbox response provides
+the coordinates of the detected object, so we can use them to draw a rectangle around the found object. I tried using
+the standard lib here, but it seemed as though I'd need to iterate through each pixel within a context to draw a
+rectangle. I found [gg]("github.com/fogleman/gg") which is a nice little 2D rendering library.
+
+```go
+func processResults(results <-chan result) {
+    for r := range results {
+        if r.err != nil {
+            log.Printf("Frame result with an error: %v\n", r.err)
+            continue
+        }
+        log.Printf("Mouse detected! frame: %d, detectors: %v\n", r.frame, r.detectors)
+
+        image, err := jpeg.Decode(r.file)
+        if err != nil {
+            log.Printf("Unable to decode image: %v", err)
+            continue
+        }
+
+        imgCtx := gg.NewContextForImage(image)
+        green := color.RGBA{50, 205, 50, 255}
+        imgCtx.SetColor(color.Transparent)
+        imgCtx.SetStrokeStyle(gg.NewSolidPattern(green))
+        imgCtx.SetLineWidth(1)
+
+        for _, d := range r.detectors {
+            left := float64(d.Objects[0].Rect.Left)
+            top := float64(d.Objects[0].Rect.Top)
+            width := float64(d.Objects[0].Rect.Width)
+            height := float64(d.Objects[0].Rect.Height)
+            imgCtx.DrawRectangle(left, top, width, height)
+            imgCtx.Stroke()
+        }
+
+        cleanedFilename := strings.ReplaceAll(filenameF, "/", "-")
+        frameFile := path.Join(outputDirF, Version+"-"+cleanedFilename+"-"+strconv.Itoa(r.frame)+".jpg")
+
+        err = gg.SaveJPG(frameFile, imgCtx.Image(), 100)
+        if err != nil {
+            log.Printf("Unable to create image: %v\n", err)
+            continue
+        }
+    }
+}
+```
+
+Here's one of the frames!
+
+{{< figure src="rendered-frame.jpg" >}}
+
+## Wrapping up
+
+With the program set up to process a video, we can now run all 4-thousand-ish videos through it to find the first one
+with a mouse! You can find the code for this here: [grocky/mouse-detective](https://github.com/grocky/mouse-detective).
