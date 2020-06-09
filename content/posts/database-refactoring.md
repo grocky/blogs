@@ -1,6 +1,7 @@
 ---
 title: "Refactoring is good for your code and databases too!"
 date: 2019-05-20T08:00:00-04:00
+tags: ["database", "refactoring", "mysql"]
 ---
 
 # Refactoring is good for your code and databases too!
@@ -58,7 +59,7 @@ For destructive schema migrations (e.g., a change that would require renaming or
 
 1. Phase 1: **Deprecate Columns**
     * If you are moving a column, write a migration to add columns and then update the application to use the new column location.
-        * When moving a column, you will need to move data over to the new column and set up triggers to synchronize data between the columns. 
+        * When moving a column, you will need to move data over to the new column and set up triggers to synchronize data between the columns.
     * If you are removing a column, then update the application to stop using the column to be removed.
     * Deploy.
 1. Phase 2: **Transition Period**
