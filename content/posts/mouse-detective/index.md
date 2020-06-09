@@ -4,7 +4,9 @@ date: 2020-06-08T00:40:13-04:00
 draft: true
 ---
 
-![](mouse-detective.gif)
+{{< figure src="mouse-detective.gif" >}}
+
+## Background
 
 Last week, we had an unwanted visitor. My wife was working late in our COVID-19 office space when she heard something
 rustling. She looked over and...
@@ -24,9 +26,11 @@ set up in the basement already and it just happened to catch the path the mouse 
 videos in one-minute intervals so going through nearly 4-thousand videos looking for a mouse to scurry by in a fraction
 of a second would be a major time sync. Seems like a perfect problem for a software engineer.
 
-A little background on me; I'm a systems engineer who has been building APIs and data systems for about a decade. I haven't
-had the need for any machine learning in my day-to-day (yet), but I knew I would need to train a model to detect the
-mouse in the videos I had. I've been using Go for most of my side projects lately, so I unwittingly just searched for
+## Training the model
+
+Being a [systems engineer](/about), I haven't had the need for any machine learning in my day-to-day (yet), but I figured
+I would need to train a model to detect the mouse in the videos I had. I've been using Go for most of my side projects
+lately, so I unwittingly just searched for:
 
 > golang process video detect
 
@@ -34,7 +38,7 @@ In the results I found some references for [MachineBox](https://machinebox.io/).
 their [Objectbox](https://docs.veritone.com/#/developer/machine-box/boxes/objectbox) was what I needed to train a model
 to detect the unwanted rodent.
 
-![](machine-box-landing.gif)
+{{< figure src="machine-box-landing.gif" >}}
 
 After setting up a free account with MachineBox, getting the model trained was really straight forward. I used
 `docker-compose` to set up the box in a container.
@@ -57,4 +61,18 @@ volumes:
 
 Once the container was up, I pointed my browser to `http://localhost:8083` and was greeted with the documentation.
 
-![](objectbox-landing.png)
+{{< figure src="objectbox-landing.png" >}}
+
+Training the model was relatively straight forward using the annotation tool. Since I knew the time my wife actually saw
+the mouse, I found the one-minute long video file with her screech. Since it seemed from the UI that the annotation tool
+would only accept a URL to the video or image, I wrote a little [file server](https://github.com/grocky/mouse-detective/blob/master/cmd/fileserver/main.go)
+so that I could provide a local URL instead of hosting the video somewhere. However, according to their [blog](https://blog.machinebox.io/introducing-objectbox-super-simple-object-detection-90699b92738d) you should be able to mount a folder with the training videos to the container, but I couldn't find it in their docs {{< emoji ":disappointed:" >}}.
+I assume the videos would be available in the `/boxdata` mount point.
+
+{{< figure src="annotation-tool.png" caption="Objectbox annotation tool" >}}
+
+I won't go into too much detail on how to annotate the video. Their [demo video](https://www.youtube.com/watch?v=r2qLEhigHgA)
+does a decent job describing what you want to do. I found the frames with the mouse, annotated them, and clicked "Start training"
+and let it do its thing.
+
+{{< figure src="annotate-mouse.png" caption="Annotation in action" >}}
