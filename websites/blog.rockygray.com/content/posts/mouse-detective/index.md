@@ -210,7 +210,7 @@ func checker(done <-chan struct{}, frames <-chan frame, results chan<- result) {
 Finally, we drain the results channel and encode the images with the mouse highlighted. The Objectbox response provides
 the coordinates of the detected object, so we can use them to draw a rectangle around the found object. I tried using
 the standard lib here, but it seemed as though I'd need to iterate through each pixel within a context to draw a
-rectangle. I found [gg]("github.com/fogleman/gg") which is a nice little 2D rendering library.
+rectangle. I found [gg](github.com/fogleman/gg) which is a nice little 2D rendering library.
 
 ```go
 func processResults(results <-chan result) {
