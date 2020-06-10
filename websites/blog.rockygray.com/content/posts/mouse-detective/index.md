@@ -1,7 +1,7 @@
 ---
 title: "Mice Detection in Go Using OpenCV and MachineBox"
 date: 2020-06-08T00:40:13-04:00
-tags: ["go", "gocv", "machine learning", "graphics"]
+tags: ["go", "gocv", "machinebox", "graphics", "machine learning"]
 ---
 
 {{< figure src="mouse-detective.gif" >}}
@@ -23,7 +23,7 @@ this unwanted visitor was a nice reprieve.
 
 We are fortunate to have a camera (a [Wyze Cam Pan](https://www.amazon.com/Wyze-1080p-Indoor-Camera-Vision/dp/B07DGR98VQ))
 set up in the basement already and it just happened to catch the path the mouse favored. However, the Wyze Cam saves
-videos in one-minute intervals so going through nearly 4-thousand videos looking for a mouse to scurry by in a fraction
+videos in one-minute intervals so going through nearly 7-thousand videos looking for a mouse to scurry by in a fraction
 of a second would be a major time sync. Seems like a perfect problem for a software engineer.
 
 ## Training the model
@@ -41,7 +41,9 @@ to detect the unwanted rodent.
 {{< figure src="machine-box-landing.gif" >}}
 
 After setting up a free account with MachineBox, getting the model trained was really straight forward. I used
-`docker-compose` to set up the box in a container.
+`docker-compose` to set up the box in a container and exported my `MB_KEY` in my shell environment. After a
+`docker-compose up` the container was running and I was able to access the box at `http://localhost:8083` and view
+the Objectbox documentation.
 
 ```yaml
 version: '3'
@@ -59,9 +61,7 @@ volumes:
   objectboxdata:
 ```
 
-Once the container was up, I pointed my browser to `http://localhost:8083` and was greeted with the documentation.
-
-{{< figure src="objectbox-landing.png" >}}
+{{< figure src="objectbox-landing.png" caption="*Objectbox landing page*" >}}
 
 Training the model was relatively straight forward using the annotation tool. Since I knew the time my wife actually saw
 the mouse, I found the one-minute long video file with her screech. Since it seemed from the UI that the annotation tool
@@ -69,19 +69,19 @@ would only accept a URL to the video or image, I wrote a little [file server](ht
 so that I could provide a local URL instead of hosting the video somewhere. However, according to their [blog](https://blog.machinebox.io/introducing-objectbox-super-simple-object-detection-90699b92738d) you should be able to mount a folder with the training videos to the container, but I couldn't find it in their docs {{< emoji ":disappointed:" >}}.
 I assume the videos would be available in the `/boxdata` mount point.
 
-{{< figure src="annotation-tool.png" caption="Objectbox annotation tool" >}}
+{{< figure src="annotation-tool.png" caption="*Objectbox annotation tool*" >}}
 
 I won't go into too much detail on how to annotate the video. Their [demo video](https://www.youtube.com/watch?v=r2qLEhigHgA)
 does a decent job describing what you want to do. I found the frames with the mouse, annotated them, and clicked "Start training"
 and let it do its thing.
 
-{{< figure src="annotate-mouse.png" caption="Annotation in action" >}}
+{{< figure src="annotate-mouse.png" caption="*Annotation in action*" >}}
 
 ## Processing the video
 
-Now for the fun part. At a high level, we have a frames channel and a results channel. The `extractor` reads in the video
-file and places each frame in the frames channel. In concurrent goroutines, the `checkers` send the frames to the
-objectbox container. If the model detects a mouse, then we save that frame to a file.
+Now for the fun part. At a high level, we have a channel for video frames and a channel for results. The `extractor`
+reads in the video file and places each frame in the frames channel. In concurrent goroutines, the `checkers` send the
+frames to the objectbox container. If the model detects a mouse, then we save that frame to a file.
 
 {{< figure src="https://github.com/grocky/mouse-detective/raw/master/docs/activity.png" caption="representation of the structure of the program" >}}
 
@@ -130,8 +130,8 @@ func extractFrames(done <-chan struct{}, filename string) (<-chan frame, <-chan 
 
 ### Frame checker
 
-In concurrent goroutines frames are pulled from the `frames` channel and sent to the Objectbox container. If the model
-detects a mouse in the frame, then we construct a `result` and place it in the channel.
+In concurrent goroutines, frames are pulled from the frames channel and sent to the Objectbox container. If the model
+detects a mouse in the frame, then we construct a result and place it in the channel.
 
 ```go
 // channel of frames with mice
@@ -207,7 +207,7 @@ func checker(done <-chan struct{}, frames <-chan frame, results chan<- result) {
 
 ### Results processor
 
-Finally, we drain the `results` channel and encode the images with the mouse highlighted. The Objectbox response provides
+Finally, we drain the results channel and encode the images with the mouse highlighted. The Objectbox response provides
 the coordinates of the detected object, so we can use them to draw a rectangle around the found object. I tried using
 the standard lib here, but it seemed as though I'd need to iterate through each pixel within a context to draw a
 rectangle. I found [gg]("github.com/fogleman/gg") which is a nice little 2D rendering library.
@@ -263,4 +263,4 @@ Here's a gif of the frames for one of the videos!
 With the program set up to process a video, I ran all 4-thousand-ish videos through it to find the first one
 with a mouse. Woot!
 
-You can find the code for this here: [grocky/mouse-detective](https://github.com/grocky/mouse-detective).
+You can find the full code for this here: [grocky/mouse-detective](https://github.com/grocky/mouse-detective).
