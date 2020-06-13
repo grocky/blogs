@@ -4,7 +4,7 @@ date: 2020-06-08T00:40:13-04:00
 tags: ["go", "gocv", "machinebox", "graphics", "machine learning"]
 ---
 
-{{< figure src="mouse-detective.gif" >}}
+{{< figure src="gopher-mouse-detective.png" caption="*Basil sourced from [disneyclips](https://www.disneyclips.com/images3/greatmouse.html) and gopher sourced from [gopherize.me](https://gopherize.me/).*" >}}
 
 ## Background
 
@@ -83,7 +83,7 @@ Now for the fun part. At a high level, we have a channel for video frames and a 
 reads in the video file and places each frame in the frames channel. In concurrent goroutines, the `checkers` send the
 frames to the objectbox container. If the model detects a mouse, then we save that frame to a file.
 
-{{< figure src="https://github.com/grocky/mouse-detective/raw/master/docs/activity.png" caption="representation of the structure of the program" >}}
+{{< figure src="https://github.com/grocky/mouse-detective/raw/master/docs/activity.png" caption="*representation of the structure of the program.*" >}}
 
 ### Frame extraction
 
@@ -256,7 +256,7 @@ func processResults(results <-chan result) {
 
 Here's a gif of the frames for one of the videos!
 
-{{< figure src="rendered-frames.gif" caption="generated with `convert rendered-frames/*${filedate}* rendered-frames.gif`" >}}
+{{< figure src="rendered-frames.gif" caption="*generated with `convert rendered-frames/*${filedate}* rendered-frames.gif`*" >}}
 
 ## Wrapping up
 
