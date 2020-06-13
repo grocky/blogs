@@ -8,3 +8,15 @@ resource "aws_route53_record" "blog" {
     evaluate_target_health = false
   }
 }
+
+variable "google_site_verification_code" {
+  type = string
+}
+
+resource "aws_route53_record" "google_site_verification" {
+  zone_id = data.terraform_remote_state.rockygray_com.outputs.root_zone_id
+  name    = "blog"
+  type    = "TXT"
+  ttl     = "600"
+  records = [var.google_site_verification_code]
+}
