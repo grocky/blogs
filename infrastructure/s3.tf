@@ -1,23 +1,38 @@
+data "aws_iam_policy_document" "bucket_policy" {
+  statement {
+    sid = "Allow CloudFront read access"
+    actions = [
+      "s3:GetObject",
+    ]
+    resources = [
+      "arn:aws:s3:::${var.blog_domain_name}/*"
+    ]
+    principals {
+      type        = "AWS"
+      identifiers = [aws_cloudfront_origin_access_identity.origin_access_identity.iam_arn]
+    }
+  }
+  statement {
+    sid = "Allow CloudFront list access"
+    actions = [
+      "s3:ListBucket",
+    ]
+    resources = [
+      "arn:aws:s3:::${var.blog_domain_name}"
+    ]
+    principals {
+      type        = "AWS"
+      identifiers = [aws_cloudfront_origin_access_identity.origin_access_identity.iam_arn]
+    }
+  }
+}
+
 resource "aws_s3_bucket" "blog" {
   bucket = var.blog_domain_name
-  acl    = "public-read"
+  acl    = "private"
 
   // @see This post: http://amzn.to/2Fa04ul explains why.
-  policy = <<POLICY
-{
-  "Version":"2012-10-17",
-  "Statement":[
-    {
-      "Sid":"AddPerm",
-      "Effect":"Allow",
-      "Principal": "*",
-      "Action":["s3:GetObject"],
-      "Resource":["arn:aws:s3:::${var.blog_domain_name}/*"]
-    }
-  ]
-}
-POLICY
-
+  policy = data.aws_iam_policy_document.bucket_policy.json
   website {
     index_document = "index.html"
     error_document = "index.html"
