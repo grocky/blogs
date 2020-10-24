@@ -16,6 +16,9 @@ help: phony ## print this help message
 	@awk -F ':|##' '/^[^\t].+?:.*?##/ { printf "${GREEN}%-20s${NC}%s\n", $$1, $$NF }' $(MAKEFILE_LIST) | \
         sort
 
+new-post: ## create a new post. Example: make new-post name=My-Awesome-Post
+	hugo new --kind post posts/$(name)
+
 %.html: %.md
 	$(MARKDOWN) $< --output $@
 
