@@ -35,7 +35,7 @@ build: $(SOURCES) ## build the site
 	hugo -v -d ${BUILD_DIR} --minify
 
 deploy: build ## deploy the site
-	aws s3 sync --cache-control 'max-age=604800' --exclude index.html build/ s3://$(SITE_BUCKET)
+	aws s3 sync --cache-control 'max-age=604800' --exclude index.html build/ s3://$(SITE_BUCKET) --delete --size-only
 	aws s3 sync --cache-control 'no-cache' build/ s3://$(SITE_BUCKET)
 
 ### Infrastructure ###
