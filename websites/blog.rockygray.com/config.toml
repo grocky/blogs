@@ -35,6 +35,8 @@ series = "series"
     tabWidth = 2
 
 [params]
+comment = true
+
 author = "Rocky Gray"
 twitter = "@RockyGJr"
 largeTwitterCard = true
