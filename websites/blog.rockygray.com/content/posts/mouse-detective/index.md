@@ -1,6 +1,7 @@
 ---
 title: "Mice Detection in Go Using OpenCV and MachineBox"
 date: 2020-06-08T00:40:13-04:00
+figurePositionShow: true
 tags: ["go", "gocv", "machinebox", "graphics", "machine learning"]
 ---
 
@@ -11,7 +12,7 @@ tags: ["go", "gocv", "machinebox", "graphics", "machine learning"]
 Last week, we had an unwanted visitor. My wife was working late in our COVID-19 office space when she heard something
 rustling. She looked over and...
 
-{{< video src="screech.mp4" width="800px" >}}
+{{< video src="screech.mp4" >}}
 
 Did you catch that? Our little mouse visitor quickly scurried to our closet in the lower left corner of the video. Of
 course, my wife is horrified and would like to throw the whole house away. How long has he been in the house? How many
