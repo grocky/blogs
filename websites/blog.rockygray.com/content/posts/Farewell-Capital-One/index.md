@@ -11,7 +11,6 @@ tags:
     - leadership
 categories:
     - career
-draft: true
 ---
 
 {{< figure src="./images/unicorn-happy-hour_social_preview.png" alt="New Focus logo with happy hour screenshot" caption="Logo design by [@sethcottle](https://twitter.com/sethcottle)" >}}
