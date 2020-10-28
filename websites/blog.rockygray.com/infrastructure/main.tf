@@ -25,18 +25,34 @@ variable "blog_domain_name" {
   default = "blog.rockygray.com"
 }
 
+variable "preview_blog_domain_name" {
+  default = "preview-blog.rockygray.com"
+}
+
 output "site_url" {
-  value = aws_route53_record.blog.fqdn
+  value = {
+    prod = aws_route53_record.blog.fqdn
+    qa   = aws_route53_record.preview_blog.fqdn
+  }
 }
 
 output "s3_website_url" {
-  value = aws_s3_bucket.blog.website_endpoint
+  value = {
+    prod = aws_s3_bucket.blog.website_endpoint
+    qa   = aws_s3_bucket.preview_blog.website_endpoint
+  }
 }
 
 output "cloudfront_url" {
-  value = aws_cloudfront_distribution.blog_distribution.domain_name
+  value = {
+    prod = aws_cloudfront_distribution.blog_distribution.domain_name
+    qa   = aws_cloudfront_distribution.preview_blog_distribution.domain_name
+  }
 }
 
 output "cloudfront_www_id" {
-  value = aws_cloudfront_distribution.blog_distribution.id
+  value = {
+    prod = aws_cloudfront_distribution.blog_distribution.id
+    qa   = aws_cloudfront_distribution.preview_blog_distribution.id
+  }
 }
