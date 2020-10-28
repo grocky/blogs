@@ -1,0 +1,35 @@
+[[main]]
+  name = "Home"
+  url = ""
+  weight = -110
+
+[[main]]
+  name = "About"
+  url = "about/"
+  weight = -109
+
+[[main]]
+  name = "Links"
+  identifier = "Links"
+  weight = -108
+[[main]]
+  parent = "Links"
+  name = "Personal Site"
+  url = "https://www.rockygray.com"
+[[main]]
+  parent = "Links"
+  name = "LinkedIn"
+  url = "https://www.linkedin.com/rockygray"
+[[main]]
+  parent = "Links"
+  name = "Twitter"
+  url = "https://twitter.com/RockyGJr"
+[[main]]
+  parent = "Links"
+  name = "GitHub"
+  url = "https://github.com/grocky"
+[[main]]
+  parent = "Links"
+  name = "Resume"
+  url = "https://resume.rockygray.com"
+

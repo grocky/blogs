@@ -6,6 +6,7 @@ MARKDOWN = pandoc --from gfm --to html --standalone
 SOURCES := $(shell find . -not \( -path ./.git -prune \) -name "*.md")
 
 SITE_BUCKET := blog.rockygray.com
+PREVIEW_SITE_BUCKET := preview-blog.rockygray.com
 BUILD_DIR := build
 
 .PHONY: phony
@@ -15,6 +16,9 @@ BUILD_DIR := build
 help: phony ## print this help message
 	@awk -F ':|##' '/^[^\t].+?:.*?##/ { printf "${GREEN}%-20s${NC}%s\n", $$1, $$NF }' $(MAKEFILE_LIST) | \
         sort
+
+new-post: ## create a new post. Example: make new-post name=My-Awesome-Post
+	hugo new --kind post posts/$(name)
 
 %.html: %.md
 	$(MARKDOWN) $< --output $@
@@ -31,12 +35,21 @@ serve: phony ## serve content with watcher
 update-theme: phony ## update themes
 	git submodule update --rebase --remote
 
-build: $(SOURCES) ## build the site
+.PHONY: build
+build: clean $(SOURCES) ## build the site
 	hugo -v -d ${BUILD_DIR} --minify
 
+.PHONY: build-preview
+build-preview: clean $(SOURCES) ## build the preview site
+	hugo -v -d ${BUILD_DIR} --minify --buildDrafts --buildFuture --baseURL="https://$(PREVIEW_SITE_BUCKET)/"
+
 deploy: build ## deploy the site
-	aws s3 sync --cache-control 'max-age=604800' --exclude index.html build/ s3://$(SITE_BUCKET) --delete --size-only
-	aws s3 sync --cache-control 'no-cache' build/ s3://$(SITE_BUCKET)
+	aws s3 sync --cache-control 'max-age=604800,public' --exclude index.html $(BUILD_DIR)/ s3://$(SITE_BUCKET) --delete --size-only
+	aws s3 cp --cache-control 'no-cache' $(BUILD_DIR)/index.html s3://$(SITE_BUCKET)/index.html
+
+deploy-preview: ## deploy the preview site
+	aws s3 sync --cache-control 'no-cache' --exclude index.html $(BUILD_DIR)/ s3://$(PREVIEW_SITE_BUCKET) --delete --size-only
+	aws s3 cp --cache-control 'no-cache' $(BUILD_DIR)/index.html s3://$(PREVIEW_SITE_BUCKET)/index.html
 
 ### Infrastructure ###
 

@@ -1,0 +1,15 @@
+{{ if .Site.BuildDrafts }}
+User-agent: Twitterbot
+Disallow:
+
+User-agent: facebookexternalhit
+Disallow:
+
+User-agent: LinkedInBot
+Disallow:
+
+User-agent: *
+Disallow: /
+{{ else }}
+User-agent: *
+{{ end }}
