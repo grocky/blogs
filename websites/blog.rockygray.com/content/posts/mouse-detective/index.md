@@ -1,11 +1,12 @@
 ---
 title: "Mice Detection in Go Using OpenCV and MachineBox"
 date: 2020-06-08T00:40:13-04:00
-figurePositionShow: true
+thumbnail: 'posts/mouse-detective/mouse-thumbnail.png'
+shareImage: 'posts/mouse-detective/gopher-mouse-detective.png'
 tags: ["go", "gocv", "machinebox", "graphics", "machine learning"]
 ---
 
-{{< figure src="gopher-mouse-detective.png" caption="*Basil sourced from [disneyclips](https://www.disneyclips.com/images3/greatmouse.html) and gopher sourced from [gopherize.me](https://gopherize.me/).*" >}}
+{{< figure src="gopher-mouse-detective.png" alt="Basil and a Gopher" caption="*Basil sourced from [disneyclips](https://www.disneyclips.com/images3/greatmouse.html) and gopher sourced from [gopherize.me](https://gopherize.me/).*" >}}
 
 ## Background
 
