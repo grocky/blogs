@@ -6,11 +6,15 @@ description: Friday was my last day at Capital One. The decision was hard, but I
 images:
     - "/posts/farewell-capital-one/images/unicorn-happy-hour_social_preview.png"
     - "/posts/farewell-capital-one/images/logo-reveal_2.png"
-tags: ['career', 'leadership']
+tags:
+    - career
+    - leadership
+categories:
+    - career
 draft: true
 ---
 
-{{< figure src="./images/unicorn-happy-hour_social_preview.png" >}}
+{{< figure src="./images/unicorn-happy-hour_social_preview.png" alt="New Focus logo with happy hour screenshot" caption="Logo design by [@sethcottle](https://twitter.com/sethcottle)" >}}
 
 Friday was my last day at Capital One. It was an incredibly hard decision to leave the company. As part of my day job
 over the last 2 and a half years I've had the privilege of working along side amazing people in various disciplines
