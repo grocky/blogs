@@ -81,6 +81,8 @@ workflows:
             - build_preview
           filters:
             <<: *filters-staging
+  deploy-prod:
+    jobs:
       - build:
           filters: &filters-prod
             branches:
