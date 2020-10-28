@@ -1,0 +1,13 @@
+- item: "globe"
+  url: "https://www.rockygray.com/"
+- item: "pdf"
+  url: "https://resume.rockygray.com/"
+- item: "github"
+  url: "https://github.com/grocky"
+- item: "twitter"
+  url: "https://twitter.com/RockyGJr"
+- item: "linkedin"
+  url: "https://www.linkedin.com/in/rockygray"
+- item: "rss"
+  url: "index.xml"
+  internal:  true
