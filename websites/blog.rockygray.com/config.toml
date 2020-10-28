@@ -3,7 +3,6 @@ theme = ["hugo-video", "hugo-clarity"]
 enableRobotsTXT = true
 baseurl = "https://blog.rockygray.com"
 title = "Rocky's thoughts and things"
-author = "Rocky Gray"
 paginate = 10
 
 disqusShortname = "blog-rockygray-com"
