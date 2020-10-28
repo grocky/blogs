@@ -3,9 +3,9 @@ title: "Farewell Capital One"
 date: 2020-10-27T17:00:00-04:00
 
 description: Friday was my last day at Capital One. The decision was hard, but I'm excited for my next opportunity!
-images:
-    - "/posts/farewell-capital-one/images/unicorn-happy-hour_social_preview.png"
-    - "/posts/farewell-capital-one/images/logo-reveal_2.png"
+shareImage: "/posts/farewell-capital-one/images/unicorn-happy-hour_social_preview.png"
+thumbnail: "/posts/farewell-capital-one/images/thumbnail.png"
+featureImage: ""
 tags:
     - career
     - leadership
