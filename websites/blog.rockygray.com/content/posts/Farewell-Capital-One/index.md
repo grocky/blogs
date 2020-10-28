@@ -40,5 +40,7 @@ forward to celebrating future wins with them as they continue to change banking 
 ## What's next?
 
 For now, I'm taking a short break. I'm looking forward to writing some blogs (like this one!) and getting some time to
-decompress. After the break, I'll be joining Twitter's Ads API platform leading a team focused on driving adoption and building a core platform product to enable teams to ship products quickly with high quality. More to come on this!
-
+decompress. I won't have the entire time to myself, though, as the kids are still in virtual school so I'll likely be
+helping out a lot more to give my wife some reprieve. After the break, I'll be joining Twitter's Ads API platform
+leading a team focused on driving adoption and building a core platform product to enable teams to ship products quickly
+ with high quality. More to come on this!
