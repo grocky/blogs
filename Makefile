@@ -43,7 +43,7 @@ build: clean $(SOURCES) ## build the site
 build-preview: clean $(SOURCES) ## build the preview site
 	hugo -v -d ${BUILD_DIR} --minify --buildDrafts --buildFuture --baseURL="https://$(PREVIEW_SITE_BUCKET)/"
 
-deploy: build ## deploy the site
+deploy: ## deploy the site
 	aws s3 sync --cache-control 'max-age=604800,public' --exclude index.html $(BUILD_DIR)/ s3://$(SITE_BUCKET) --delete --size-only
 	aws s3 cp --cache-control 'no-cache' $(BUILD_DIR)/index.html s3://$(SITE_BUCKET)/index.html
 
