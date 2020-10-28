@@ -6,7 +6,7 @@ title = "Rocky's thoughts and things"
 author = "Rocky Gray"
 paginate = 10
 
-disqusShortname = ""
+disqusShortname = "blog-rockygray-com"
 
 DefaultContentLanguage = "en"
 
