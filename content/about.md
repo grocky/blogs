@@ -1,6 +1,7 @@
 ---
 title: "About"
 date: 2020-05-17T15:19:12-04:00
+comment: no
 ---
 
 {{< figure src="/me-2019.jpg" >}}
