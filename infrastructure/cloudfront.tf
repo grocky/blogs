@@ -66,7 +66,7 @@ resource "aws_cloudfront_distribution" "blog_distribution" {
   }
 
   viewer_certificate {
-    acm_certificate_arn = data.terraform_remote_state.rockygray_com.outputs.certificate_arn
+    acm_certificate_arn = data.terraform_remote_state.rockygray_com.outputs.root_domain.certificate_arn
     ssl_support_method  = "sni-only"
   }
 
@@ -145,7 +145,7 @@ resource "aws_cloudfront_distribution" "preview_blog_distribution" {
   }
 
   viewer_certificate {
-    acm_certificate_arn = data.terraform_remote_state.rockygray_com.outputs.certificate_arn
+    acm_certificate_arn = data.terraform_remote_state.rockygray_com.outputs.root_domain.certificate_arn
     ssl_support_method  = "sni-only"
   }
 

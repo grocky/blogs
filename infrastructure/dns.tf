@@ -1,5 +1,5 @@
 resource "aws_route53_record" "blog" {
-  zone_id = data.terraform_remote_state.rockygray_com.outputs.root_zone_id
+  zone_id = data.terraform_remote_state.rockygray_com.outputs.root_domain.root_zone_id
   name    = var.blog_domain_name
   type    = "A"
   alias {
@@ -11,11 +11,11 @@ resource "aws_route53_record" "blog" {
 
 variable "google_site_verification_code" {
   type    = string
-  default = "google-site-verification =SwLro_FeJDDXllCq5zlf9VG-kfe1K_bK_bzdZW6YMxk"
+  default = "google-site-verification=SwLro_FeJDDXllCq5zlf9VG-kfe1K_bK_bzdZW6YMxk"
 }
 
 resource "aws_route53_record" "google_site_verification" {
-  zone_id = data.terraform_remote_state.rockygray_com.outputs.root_zone_id
+  zone_id = data.terraform_remote_state.rockygray_com.outputs.root_domain.root_zone_id
   name    = "blog"
   type    = "TXT"
   ttl     = "600"
@@ -23,7 +23,7 @@ resource "aws_route53_record" "google_site_verification" {
 }
 
 resource "aws_route53_record" "preview_blog" {
-  zone_id = data.terraform_remote_state.rockygray_com.outputs.root_zone_id
+  zone_id = data.terraform_remote_state.rockygray_com.outputs.root_domain.root_zone_id
   name    = var.preview_blog_domain_name
   type    = "A"
   alias {
