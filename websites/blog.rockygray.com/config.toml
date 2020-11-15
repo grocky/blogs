@@ -1,6 +1,9 @@
 theme = ["hugo-video", "hugo-clarity"]
 
 enableRobotsTXT = true
+enableEmoji = true
+enableGitInfo = true
+
 baseurl = "https://blog.rockygray.com"
 title = "Rocky's thoughts and things"
 paginate = 10
@@ -39,7 +42,7 @@ comment = true
 author = "Rocky Gray"
 twitter = "@RockyGJr"
 largeTwitterCard = true
-introDescription = "Father. Husband. Technologist. Leader. Inventor."
+Tagline = "Father. Husband. Technologist. Leader. Inventor."
 description = "Rocky Gray is a software engineering leader focused on building systems and leading talented engineers. Thoughts on this site are his own."
 
 customCSS = ["css/blog.css"]

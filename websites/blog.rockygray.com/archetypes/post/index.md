@@ -1,15 +1,25 @@
 ---
 title: "{{ replace .Name "-" " " | title }}"
-description: {{ .Name }}
 date: {{ .Date }}
+description: "Article description."
+featured: true
+toc: false
 
-shareImage: ""
-thumbnail: ""
-featureImage: ""
+featureImage: "/images/path/file.jpg"
+thumbnail: "/images/path/thumbnail.png" # Thumbnails should be square (150x150 suggested)
+shareImage: "/images/path/share.png"
+codeMaxLines: 10
+codeLineNumbers: false
+figurePositionShow: false
 
-tags: []
-categories: []
+categories:
+  - Technology
+
+tags:
+  - Tag_name1
+  - Tag_name2
+
 draft: true
 ---
 
-{{< figure src="./images/grocky-solutions.png" caption="*placeholder image…*" >}}
+**Insert Lead paragraph here.**
