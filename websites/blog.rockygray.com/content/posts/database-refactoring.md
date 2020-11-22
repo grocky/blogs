@@ -1,5 +1,6 @@
 ---
 title: "Refactoring is good for your code and databases too!"
+featured: true
 date: 2019-05-20T08:00:00-04:00
 tags: ["database", "refactoring", "mysql"]
 ---
