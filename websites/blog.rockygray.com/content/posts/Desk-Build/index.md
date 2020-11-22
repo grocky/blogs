@@ -5,8 +5,8 @@ description: "During my funemployment I wanted to build a desk that would last f
 featured: true
 toc: true
 
-featureImage: "/posts/desk-build/gallery-1/4-desk.jpg"
-thumbnail: "/posts/desk-build/gallery-1/4-desk.jpg"
+featureImage: "/posts/desk-build/feature.jpg"
+thumbnail: "/posts/desk-build/feature.jpg"
 shareImage: ""
 figurePositionShow: false
 
@@ -59,7 +59,7 @@ I basically did the same things for the shelves except I kept one edge flat so t
 and I used a chamfer bit on the bottom edges to create an angled edge. Honestly, I like this look a lot and wish I had
 done this for the desk top as well. Next time!
 
-{{< foldergallery src="cleaning-up-the-edges" >}}
+{{< gallery src="cleaning-up-the-edges" >}}
 
 ### Applying finish
 
@@ -70,7 +70,7 @@ early on since they recommend sealing the butcher block within 48 hours of unwra
 coats of Danish oil and a top layer of [butcher block conditioner](https://www.lowes.com/pd/Howard-Butcher-Block-Conditioner-Clear-Butcher-Block-Oil-Actual-Net-Contents-12-oz/999918606)
 to lock everything in once everything was finished.
 
-{{< foldergallery src="applying-finish" >}}
+{{< gallery src="applying-finish" >}}
 
 ### Base, wire management, and wireless charger
 
@@ -97,7 +97,7 @@ using glue or something semi-permanent. I ended up routing 2 platforms on either
 metal so I could screw the strip in place. It's not pretty, but it works! In retrospect, I should have just 3D printed
 a strip of plastic, but I was browsing aisles in Lowe's and the long strips of metal caught my eye. Next time :smile:.
 
-{{< foldergallery src="install-base" >}}
+{{< gallery src="install-base" >}}
 
 ### Customize with personal logo
 
@@ -109,7 +109,7 @@ hotter than before to both create the burn marks and emboss it a bit on the wood
 area for the wireless charger and also branded the lower right of each piece for consistency. I'm not sure if it turns out better
 before or after applying a finish, but I'm happy with the way it came out!
 
-{{< foldergallery src="custom-logo" >}}
+{{< gallery src="custom-logo" >}}
 
 ### Setup and placement
 
@@ -122,7 +122,7 @@ the mount, but that's coming soon. I attached the Hue Play lights to the back of
 I've got some simple automation for the lights to turn on and off during my working hours, but I plan to automate these
 a bit more to be visual indicators for when I'm heads down.
 
-{{< foldergallery src="setup-and-placement" >}}
+{{< gallery src="setup-and-placement" >}}
 
 In the end, I'm happy with the with the way this project came out. The desk is SOLID. I could probably twerk on it if I
 needed to. I'm hoping it'll be the place I get work done for a very, very long time. When we move to a bigger place and
@@ -131,14 +131,14 @@ and peripherals.
 
 ## Parts list
 
-| Description             | Link                                                                                                                 |
+| Description             | Link                                                                                                                     |
 | -----------             | --------                                                                                                                 |
 | Jarvis wide frame only  | https://www.fully.com/jarvis-frame-only.html                                                                             |
 | monitor mount           | https://www.amazon.com/dp/B07LFWPRG5                                                                                     |
 | hue play                | https://www.amazon.com/gp/product/B07GXB3S7Z/                                                                            |
 | floating shelf brackets | https://www.sheppardbrackets.com/https/shop-floating-shelf-brackets/heavy-duty-floatin-shelf-brackets-1-1/2inch-backplate-3/4-inch-rods |
 | counter tops            | https://www.lowes.com/pd/The-Baltic-Butcher-Block-8-ft-Natural-Straight-Butcher-Block-Birch-Kitchen-Countertop/999931668 |
-| leather desk top        | https://saddlebackleather.com                                                                                                    |
+| leather desk top        | https://saddlebackleather.com                                                                                            |
 | Surge protector         | https://www.lowes.com/pd/PRIME-10-Outlet-1500-Joules-1875-Watt-AC/50213043                                               |
 | counter tops            | https://www.lowes.com/pd/The-Baltic-Butcher-Block-8-ft-Natural-Straight-Butcher-Block-Birch-Kitchen-Countertop/999931668 |
 | wireless charger        | https://www.amazon.com/gp/product/B086XB2ZW2                                                                             |
