@@ -1,0 +1,83 @@
+{{- $.Page.Scratch.Add "figurecount" 1 }}
+{{ $galleryCount := $.Page.Scratch.Get "figurecount" }}
+{{- if eq $galleryCount 1 }}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+
+<style>
+  .gallery {
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+  }
+
+  .gallery a img, .gallery a video {
+    flex: auto;
+    height: 13em;
+    min-height: 150px;
+    margin: 0 8px 8px 0;
+    border: 3px solid black;
+  }
+
+  .gallery a {
+    position: relative;
+  }
+
+  .gallery a .play-btn {
+    position: absolute;
+    max-width: 700px;
+    width: 100px;
+    height: 100px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .gallery a .play-btn svg {
+    transition: all .2s ease;
+    fill: #fff;
+  }
+  .gallery a .play-btn:hover svg,
+  .gallery a .play-btn:focus svg {
+    cursor: pointer;
+    fill: #17e617;
+  }
+</style>
+{{ end }}
+
+{{ .Scratch.SetInMap "fixRotation" "1" "r0" }}
+{{ .Scratch.SetInMap "fixRotation" "6" "r270" }}
+{{ .Scratch.SetInMap "fixRotation" "3" "r180" }}
+{{ .Scratch.SetInMap "fixRotation" "8" "r90" }}
+
+<div class="gallery" itemscope itemtype="http://schema.org/ImageGallery">
+  {{- range (.Page.Resources.Match (printf "%s/*" (.Get "src"))) }}
+    {{ if (eq .MediaType.MainType "video") }}
+      <a data-fancybox="gallery-{{ $galleryCount }}" href="{{ .Permalink }}">
+        <div class="play-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 311.69 311.69"><path d="M155.84,0A155.85,155.85,0,1,0,311.69,155.84,155.84,155.84,0,0,0,155.84,0Zm0,296.42A140.58,140.58,0,1,1,296.42,155.84,140.58,140.58,0,0,1,155.84,296.42Z"></path><polygon points="218.79 155.84 119.22 94.34 119.22 217.34 218.79 155.84"></polygon></svg>
+        </div>
+        <video src="{{ .Permalink }}" itemscope itemtype="https://schema.org/VideoObject"></video>
+      </a>
+    {{ else if (eq .MediaType.MainType "image") }}
+      {{ $orientation := 1 }}
+      {{ with .Exif }}
+       {{ $orientation = .Tags.Orientation }}
+      {{ end }}
+      {{ $rotate := (index ($.Scratch.Get "fixRotation") (string $orientation)) }}
+      {{ $thumbnail := .Resize (printf "320x %s" $rotate) }}
+      {{ $large := .Resize (printf "1500x %s" $rotate) }}
+      <figure itemscope itemtype="http://schema.org/ImageObject">
+        <a href="{{ $large.Permalink }}" data-fancybox="gallery-{{ $galleryCount }}" data-size="{{ $large.Width }}x{{ $large.Height }}">
+          <img src="{{ $thumbnail.Permalink }}" itemprop="thumbnail" alt="thumbnail for {{ .Name }}" />
+        </a>
+        <figcaption itemprop="caption description">
+          <span itemprop="copyrightHolder"></span>
+        </figcaption>
+      </figure>
+    {{ end}}
+  {{ end }}
+</div>
+
+{{- if eq $galleryCount 1 }}
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+{{ end }}
