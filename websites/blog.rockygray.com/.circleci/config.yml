@@ -15,11 +15,11 @@ jobs:
           name: Validate the site
           command: htmlproofer ./build --allow-hash-href --check-html --empty-alt-ignore --disable-external
       - save_cache:
-          key: v1-makefile-{{ .Environment.CIRCLE_SHA1 }}
+          key: v1-makefile-{{ .Environment.CIRCLE_SHA1 }}-prod
           paths:
             - ~/blog.rockygray.com/Makefile
       - save_cache:
-          key: v1-build-{{ .Environment.CIRCLE_SHA1 }}
+          key: v1-build-{{ .Environment.CIRCLE_SHA1 }}-prod
           paths:
             - ~/blog.rockygray.com/build
   deploy:
@@ -28,9 +28,9 @@ jobs:
     working_directory: ~/blog.rockygray.com
     steps:
       - restore_cache:
-          key: v1-makefile-{{ .Environment.CIRCLE_SHA1 }}
+          key: v1-makefile-{{ .Environment.CIRCLE_SHA1 }}-prod
       - restore_cache:
-          key: v1-build-{{ .Environment.CIRCLE_SHA1 }}
+          key: v1-build-{{ .Environment.CIRCLE_SHA1 }}-prod
       - run:
           name: Deploy the app
           command: make deploy
