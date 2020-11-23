@@ -44,7 +44,7 @@ had. Oh, boy, was I wrong. The saw damn near burned through its motor. I don't k
 making the cut was inexperienced or because it wasn't designed to cut thick cuts like butcher block (it's `1 3/4in` thick),
 but I nearly went home with a half-way cut block of wood that probably wouldn't have been able to fit in my car. The
 [videos I watched](https://www.youtube.com/results?search_query=cut+butcher+block+countertop) made it look so easy with their
-circular saws!
+circular saws! Next time I'll try and cut it down myself assuming I can fit the `8ft` long block in my car.
 
 ### Cleaning up the edges
 
