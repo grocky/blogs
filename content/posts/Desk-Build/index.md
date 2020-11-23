@@ -7,7 +7,7 @@ toc: true
 
 featureImage: "/posts/desk-build/feature.jpg"
 thumbnail: "/posts/desk-build/feature.jpg"
-shareImage: ""
+shareImage: "/posts/desk-build/share.jpg"
 figurePositionShow: false
 
 tags:
