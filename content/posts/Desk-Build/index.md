@@ -1,6 +1,6 @@
 ---
 title: "My Desk Build"
-date: 2020-11-15T08:25:25-05:00
+date: 2020-11-21T08:25:25-05:00
 description: "During my funemployment I wanted to build a desk that would last for a long time. I took a plain, unfinished butcher block counter top and turned it into a custom standing desk with my personal logo and built in wireless charger."
 featured: true
 toc: true
