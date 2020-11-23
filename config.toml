@@ -1,4 +1,4 @@
-theme = ["hugo-video", "hugo-clarity"]
+theme = ["hugo-video", "hugo-clarity-grocky"]
 
 enableRobotsTXT = true
 enableEmoji = true
