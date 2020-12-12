@@ -38,7 +38,7 @@ a custom standing desk with my personal logo and built in wireless charger.
 ## The Process
 
 The process actually started in the store. The only size available in the depth that I needed were `8ft` and `4ft`. The
-nook in my basement could accommodate a `6ft` desk so I had the store rep cut the counter top down to size. I figured
+nook in my basement could accommodate a `6ft` desk, so I had the store rep cut the counter top down to size. I figured
 this would be light work for the [big panel saw](https://www.lowes.com/pl/Panel-saws-Saws-Power-tools-Tools/878407644) they
 had. Oh, boy, was I wrong. The saw damn near burned through its motor. I don't know if this was because the rep that was
 making the cut was inexperienced or because it wasn't designed to cut thick cuts like butcher block (it's `1 3/4in` thick),
@@ -49,10 +49,10 @@ circular saws! Next time I'll try and cut it down myself assuming I can fit the 
 ### Cleaning up the edges
 
 Once I got my `6ft x 2ft` (and 2 `2ft x 12.5in` pieces for shelves) I was able to get to work finishing them. I used a
-router with a round-over bit along all of the edges to soften them and clean up the edges that were touched by the saw.
+router with a round-over bit along all the edges to soften them and clean up the edges that were touched by the saw.
 This was my first time using a router, but it was really easy. I did experience some kickback when going through too much
 material. I learned to respect the beast because when it violently kicks back things can go wrong quickly if you don't
-hold on and control it. Once it was routed I used a hand sander to knock down the machining lines. In retrospect, I think
+hold on and control it. Once it was routed, I used a hand sander to knock down the machining lines. In retrospect, I think
 I set the depth of the router too low which caused a slight lip just above the curve of the round-over on the top face.
 
 I basically did the same things for the shelves except I kept one edge flat so that it could sit flush against the wall
@@ -66,7 +66,7 @@ done this for the desk top as well. Next time!
 For the finish I decided to go with Danish oil which is an oil and varnish combination. I wanted something that would
 bring out the grain in the wood while keeping the wood feeling natural. It was really easy to apply. Just pour it on
 spread it around and let it soak in. I ended up doing 3 coats in the first pass. I did this first few coats of finish
-early on since they recommend sealing the butcher block within 48 hours of unwrapping it. I would end up doing a few more
+early on since they recommend sealing the butcher block within 48 hours of unwrapping it. In the end, I put on a few more
 coats of Danish oil and a top layer of [butcher block conditioner](https://www.lowes.com/pd/Howard-Butcher-Block-Conditioner-Clear-Butcher-Block-Oil-Actual-Net-Contents-12-oz/999918606)
 to lock everything in once everything was finished.
 
@@ -74,7 +74,7 @@ to lock everything in once everything was finished.
 
 ### Base, wire management, and wireless charger
 
-Once the first few coats of danish oil dried I started on assembling the base. I went with the [Jarvis Frame](https://www.fully.com/jarvis-frame-only.html)
+Once the first few coats of danish oil dried, I started on assembling the base. I went with the [Jarvis Frame](https://www.fully.com/jarvis-frame-only.html)
 as the base. This thing is solid. Each leg weighs at least 30 pounds and the dual motors can lift 350 pounds. The assembly
 was really straight forward. I needed to center the legs and mark the holes myself. I awkwardly used a speed square to ensure
 the placement of the marks were the same distance from the edges on each side of the table. With the holes marked I drilled
@@ -94,7 +94,7 @@ it wouldn't have to go through a really sharp angle.
 
 I wanted to be able to swap out the charger easily if needed, so I needed a way to secure the charger without making it
 using glue or something semi-permanent. I ended up routing 2 platforms on either side of the charger and cut a strip of
-metal so I could screw the strip in place. It's not pretty, but it works! In retrospect, I should have just 3D printed
+metal, so I could screw the strip in place. It's not pretty, but it works! In retrospect, I should have just 3D printed
 a strip of plastic, but I was browsing aisles in Lowe's and the long strips of metal caught my eye. Next time :smile:.
 
 {{< gallery src="install-base" >}}
@@ -124,9 +124,9 @@ a bit more to be visual indicators for when I'm heads down.
 
 {{< gallery src="setup-and-placement" >}}
 
-In the end, I'm happy with the with the way this project came out. The desk is SOLID. I could probably twerk on it if I
+In the end, I'm happy with the way this project came out. The desk is SOLID. I could probably twerk on it if I
 needed to. I'm hoping it'll be the place I get work done for a very, very long time. When we move to a bigger place and
-I have a dedicated spot for my 3D printer, I plan on moving the wireless charger so I can center myself, the monitors
+I have a dedicated spot for my 3D printer, I plan on moving the wireless charger so I can center myself, the monitors,
 and peripherals.
 
 ## Parts list
